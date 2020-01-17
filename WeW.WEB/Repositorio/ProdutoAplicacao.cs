@@ -47,7 +47,8 @@ namespace WeW.WEB.Repositorio
         {
             using (Base = new Base())
             {
-                var strQuery = "SELECT cod, nome, descricao, preco, estoque, categoria FROM Produto";
+                var strQuery = "SELECT cod, Pro.nome, descricao, preco, Categoria.nome, Estoque.quantidade FROM Produto Pro"
+                              +" INNER JOIN Categoria ON Categoria.id = Pro.categoria INNER JOIN Estoque ON Estoque.id = Pro.estoque ORDER BY Pro.nome";
                 var retorno = Base.ExecutaComandoComRetorno(strQuery);
                 return ReaderEmList(retorno);
             }
@@ -74,7 +75,16 @@ namespace WeW.WEB.Repositorio
                     Cod = int.Parse(reader["cod"].ToString()),
                     Nome = reader["nome"].ToString(),
                     Descricao = reader["descricao"].ToString(),
-                    Preco = double.Parse(reader["preco"].ToString())                   
+                    Preco = double.Parse(reader["preco"].ToString()),
+                    Estoque = new EstoqueProduto()
+                    {
+                        Quantidade = int.Parse(reader["quantidade"].ToString())
+                    },
+                    Categoria = new Categoria()
+                    {
+                        Nome = reader["nome"].ToString()
+                    }
+                    
                 };
 
                 produtos.Add(TempoObjeto);

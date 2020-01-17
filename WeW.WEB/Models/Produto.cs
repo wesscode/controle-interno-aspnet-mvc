@@ -18,10 +18,10 @@ namespace WeW.WEB.Models
         public double Preco { get; set; }
         [Required]
         public EstoqueProduto Estoque { get; set; }
-        public int EstoqueId { get; set; }
+        
 
         [Required]
-        public int CategoriaId { get; set; }
+       
         public Categoria Categoria { get; set; }
     }
 }
