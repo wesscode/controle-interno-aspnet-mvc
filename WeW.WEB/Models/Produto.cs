@@ -10,18 +10,16 @@ namespace WeW.WEB.Models
     {
         [Required]
         public int Cod { get; set; }
+
         [Required]
         public string Nome { get; set; }
 
         public string Descricao { get; set; }
-        [Required]
+     
         public double Preco { get; set; }
-        [Required]
+      
         public EstoqueProduto Estoque { get; set; }
-        
 
-        [Required]
-       
         public Categoria Categoria { get; set; }
     }
 }

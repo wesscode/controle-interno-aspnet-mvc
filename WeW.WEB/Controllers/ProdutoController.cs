@@ -11,6 +11,7 @@ namespace WeW.WEB.Controllers
     public class ProdutoController : Controller
     {
         ProdutoAplicacao appProduto = new ProdutoAplicacao();
+        CategoriaAplicacao appCategoria = new CategoriaAplicacao();
         // GET: Produto
         public ActionResult Index()
         {            
@@ -21,6 +22,8 @@ namespace WeW.WEB.Controllers
 
         public ActionResult Cadastrar()
         {
+            ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
+
             return View();
         }
 
@@ -28,11 +31,12 @@ namespace WeW.WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Cadastrar(Produto produto)
         {
+            ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
             if (ModelState.IsValid)
             {
                 appProduto.Inserir(produto);
                 return RedirectToAction(nameof(Index));
-            }
+            }           
 
             return View(produto);
         }

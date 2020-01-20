@@ -13,8 +13,8 @@ namespace WeW.WEB.Repositorio
 
         public void Inserir(Produto produto)
         {
-            var strQuery = "INSERT INTO Produto (cod, nome, descricao, preco, quantidade, categoria)";
-                strQuery += $" VALUES ('{produto.Cod}', '{produto.Nome}', '{produto.Descricao}', '{produto.Preco}', '{produto.Estoque}', '{produto.Categoria}')";
+            var strQuery = "INSERT INTO Produto (cod, nome, descricao, preco, categoria, estoque )";
+                strQuery += $" VALUES ('{produto.Cod}', '{produto.Nome}', '{produto.Descricao}', '{produto.Preco}', '{produto.Categoria}', '{produto.Estoque}')";
 
             using (Base = new Base())
             {
@@ -32,6 +32,17 @@ namespace WeW.WEB.Repositorio
                 Base.ExecutaComando(strQuery);
             }
         }
+
+        //public void Salvar(Produto produto)
+        //{
+        //    if (produto.Cod > 0)
+        //    {
+        //        Alterar(produto);
+        //    }
+        //    else {
+        //        Inserir(produto);
+        //    }
+        //}
 
         public void Excluir(int id)
         {

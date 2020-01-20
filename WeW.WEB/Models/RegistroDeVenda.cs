@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using WeW.WEB.Models.Enums;
 
 namespace WeW.WEB.Models
 {
@@ -12,8 +11,6 @@ namespace WeW.WEB.Models
 
         public DateTime Data { get; set; }
 
-        public double Montante { get; set; }
-
-        public StatusProdutos Status { get; set; }
+        public double Montante { get; set; }       
     }
 }

@@ -127,11 +127,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Categoria.cs" />
-    <Compile Include="Models\Enums\StatusProdutos.cs" />
     <Compile Include="Models\EstoqueProduto.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\RegistroDeVenda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorio\CategoriaAplicacao.cs" />
     <Compile Include="Repositorio\ProdutoAplicacao.cs" />
     <Compile Include="Repositorio\Base.cs" />
   </ItemGroup>
