@@ -14,7 +14,7 @@ namespace WeW.WEB.Repositorio
         public void Inserir(Produto produto)
         {
             var strQuery = "INSERT INTO Produto (cod, nome, descricao, preco, categoria, estoque )";
-                strQuery += $" VALUES ('{produto.Cod}', '{produto.Nome}', '{produto.Descricao}', '{produto.Preco}', '{produto.Categoria}', '{produto.Estoque}')";
+                strQuery += $" VALUES ('{produto.Cod}', '{produto.Nome}', '{produto.Descricao}', '{produto.Preco}', '{produto.CategoriaId}', '{produto.EstoqueId}')";
 
             using (Base = new Base())
             {

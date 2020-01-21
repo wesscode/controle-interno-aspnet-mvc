@@ -17,8 +17,12 @@ namespace WeW.WEB.Models
         public string Descricao { get; set; }
      
         public double Preco { get; set; }
-      
+
+        public int EstoqueId { get; set; }
+
         public EstoqueProduto Estoque { get; set; }
+
+        public int CategoriaId { get; set; }
 
         public Categoria Categoria { get; set; }
     }
