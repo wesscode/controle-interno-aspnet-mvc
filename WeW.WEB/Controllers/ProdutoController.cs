@@ -44,6 +44,7 @@ namespace WeW.WEB.Controllers
         public ActionResult Alterar(int id)
         {
             var produto = appProduto.ListarPorId(id);
+            ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
             if (produto == null)
             {
                 return HttpNotFound();
@@ -56,6 +57,8 @@ namespace WeW.WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Alterar(Produto produto)
         {
+         ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
+
             if (ModelState.IsValid)
             {
                 appProduto.Alterar(produto);

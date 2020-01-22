@@ -127,7 +127,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Categoria.cs" />
-    <Compile Include="Models\EstoqueProduto.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\RegistroDeVenda.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,8 +13,8 @@ namespace WeW.WEB.Repositorio
 
         public void Inserir(Produto produto)
         {
-            var strQuery = "INSERT INTO Produto (cod, nome, descricao, preco, categoria, estoque )";
-                strQuery += $" VALUES ('{produto.Cod}', '{produto.Nome}', '{produto.Descricao}', '{produto.Preco}', '{produto.CategoriaId}', '{produto.EstoqueId}')";
+            var strQuery = "INSERT INTO Produto (cod, nome, descricao, preco, categoria, quantidade )";
+                strQuery += $" VALUES ('{produto.Cod}', '{produto.Nome}', '{produto.Descricao}', '{produto.Preco}', '{produto.CategoriaId}', '{produto.Quantidade}')";
 
             using (Base = new Base())
             {
@@ -25,7 +25,7 @@ namespace WeW.WEB.Repositorio
         public void Alterar(Produto produto)
         {
             var strQuery = "UPDATE Produto SET";
-            strQuery += $" nome = '{produto.Nome}', descricao = '{produto.Descricao}', preco = '{produto.Preco}', estoque = '{produto.Estoque}', WHERE cod = '{produto.Cod}'";
+            strQuery += $" nome = '{produto.Nome}', descricao = '{produto.Descricao}', preco = '{produto.Preco}', categoria = '{produto.CategoriaId}', quantidade = '{produto.Quantidade}' WHERE cod = '{produto.Cod}'";
 
             using (Base = new Base())
             {
@@ -58,8 +58,8 @@ namespace WeW.WEB.Repositorio
         {
             using (Base = new Base())
             {
-                var strQuery = "SELECT cod, Pro.nome, descricao, preco, Categoria.nome, Estoque.quantidade FROM Produto Pro"
-                              +" INNER JOIN Categoria ON Categoria.id = Pro.categoria INNER JOIN Estoque ON Estoque.id = Pro.estoque ORDER BY Pro.nome";
+                var strQuery = "SELECT cod, Pro.nome, descricao, preco, Categoria.id as c, Categoria.nome as cate, quantidade FROM Produto Pro"
+                              +" INNER JOIN Categoria ON Categoria.id = Pro.categoria ORDER BY Pro.nome";
                 var retorno = Base.ExecutaComandoComRetorno(strQuery);
                 return ReaderEmList(retorno);
             }
@@ -69,7 +69,7 @@ namespace WeW.WEB.Repositorio
         {
             using (Base = new Base())
             {
-                var strQuery = $"SELECT cod, nome, descricao, preco, estoque, categoria FROM Produto WHERE cod = '{id}'";
+                var strQuery = $"SELECT cod, nome, descricao, preco, categoria c, categoria cate, quantidade FROM Produto WHERE cod = '{id}'";
                 var retorno = Base.ExecutaComandoComRetorno(strQuery);
                 return ReaderEmList(retorno).FirstOrDefault();
             }
@@ -86,16 +86,13 @@ namespace WeW.WEB.Repositorio
                     Cod = int.Parse(reader["cod"].ToString()),
                     Nome = reader["nome"].ToString(),
                     Descricao = reader["descricao"].ToString(),
-                    Preco = double.Parse(reader["preco"].ToString()),
-                    Estoque = new EstoqueProduto()
-                    {
-                        Quantidade = int.Parse(reader["quantidade"].ToString())
-                    },
+                    Preco = double.Parse(reader["preco"].ToString()),                  
+                    Quantidade = int.Parse(reader["quantidade"].ToString()),
+                    CategoriaId = int.Parse(reader["c"].ToString()),
                     Categoria = new Categoria()
                     {
-                        Nome = reader["nome"].ToString()
-                    }
-                    
+                        Nome = reader["cate"].ToString()
+                    }                    
                 };
 
                 produtos.Add(TempoObjeto);

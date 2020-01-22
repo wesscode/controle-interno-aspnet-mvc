@@ -18,9 +18,7 @@ namespace WeW.WEB.Models
      
         public double Preco { get; set; }
 
-        public int EstoqueId { get; set; }
-
-        public EstoqueProduto Estoque { get; set; }
+        public int Quantidade { get; set; }       
 
         public int CategoriaId { get; set; }
 
