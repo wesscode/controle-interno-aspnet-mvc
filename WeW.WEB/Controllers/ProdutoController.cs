@@ -66,5 +66,15 @@ namespace WeW.WEB.Controllers
             }
             return View(produto);
         }
+
+        public ActionResult Detalhes(int id)
+        {           
+            var produto = appProduto.ListarPorId(id);
+            if (produto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(produto);
+        }
     }
 }

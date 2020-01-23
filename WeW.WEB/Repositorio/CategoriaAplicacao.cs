@@ -13,7 +13,7 @@ namespace WeW.WEB.Repositorio
 
         public void Inserir()
         {
-
+           
         }
         public void Alterar()
         {

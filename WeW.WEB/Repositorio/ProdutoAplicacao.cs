@@ -69,11 +69,12 @@ namespace WeW.WEB.Repositorio
         {
             using (Base = new Base())
             {
-                var strQuery = $"SELECT cod, nome, descricao, preco, categoria c, categoria cate, quantidade FROM Produto WHERE cod = '{id}'";
+                var strQuery = "SELECT cod, Pro.nome, descricao, preco, Categoria.id c, Categoria.nome cate, quantidade FROM Produto Pro"
+                               +$" INNER JOIN Categoria ON Categoria.id = Pro.categoria WHERE cod = '{id}'";
                 var retorno = Base.ExecutaComandoComRetorno(strQuery);
                 return ReaderEmList(retorno).FirstOrDefault();
             }
-        }
+        }      
 
         private List<Produto> ReaderEmList(SqlDataReader reader)
         {
