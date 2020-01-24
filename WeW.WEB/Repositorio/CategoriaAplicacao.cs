@@ -11,13 +11,21 @@ namespace WeW.WEB.Repositorio
     {
         private Base Base;
 
-        public void Inserir()
+        public void Inserir(Categoria categoria)
         {
-           
+            var strQuery = $"INSERT INTO Categoria (nome) VALUES ('{categoria.Nome}')";
+            using (Base = new Base())
+            {
+                Base.ExecutaComando(strQuery);
+            }
         }
-        public void Alterar()
+        public void Alterar(Categoria categoria)
         {
-
+            var strQuery = $"UPDATE Categoria SET nome = '{categoria.Nome}' WHERE id = '{categoria.Id}'";
+            using (Base = new Base())
+            {
+                Base.ExecutaComando(strQuery);
+            }
         }
 
         public List<Categoria> ListarTodos()
