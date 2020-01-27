@@ -35,5 +35,49 @@ namespace WeW.WEB.Controllers
             return View(categoria);
         }
 
+        public ActionResult Alterar(int id)
+        {
+            var categoria = appCategoria.ListarPorId(id);
+            if (categoria == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(categoria);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Alterar(Categoria categoria)
+        {
+            if (ModelState.IsValid)
+            {
+                appCategoria.Alterar(categoria);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(categoria);
+        }
+
+        public ActionResult Deletar(int id)
+        {
+            var categoria = appCategoria.ListarPorId(id);
+
+            if (categoria == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(categoria);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Deletar(Categoria categoria)
+        {
+            appCategoria.Deletar(categoria.Id);
+
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

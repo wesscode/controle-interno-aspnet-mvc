@@ -44,7 +44,7 @@ namespace WeW.WEB.Repositorio
         //    }
         //}
 
-        public void Excluir(int id)
+        public void Deletar(int id)
         {
             var strQuery = $"DELETE FROM Produto WHERE cod '{id}'";
 

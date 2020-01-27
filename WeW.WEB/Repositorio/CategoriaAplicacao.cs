@@ -28,6 +28,15 @@ namespace WeW.WEB.Repositorio
             }
         }
 
+        public void Deletar(int id)
+        {
+            string strQuery = $"DELETE FROM Categoria WHERE id = '{id}'";
+            using (Base = new Base())
+            {
+                Base.ExecutaComando(strQuery);
+            }
+        }
+
         public List<Categoria> ListarTodos()
         {
             using (Base = new Base())
@@ -38,13 +47,13 @@ namespace WeW.WEB.Repositorio
             }
         }
 
-        public List<Categoria>ListarPorId(int id)
+        public Categoria ListarPorId(int id)
         {
             using (Base = new Base())
             {
                 string strQuery = $"SELECT id, nome FROM Categoria WHERE id = '{id}'";
                 var retorno = Base.ExecutaComandoComRetorno(strQuery);
-                return ReaderEmList(retorno);
+                return ReaderEmList(retorno).FirstOrDefault();
             }
         }
 
