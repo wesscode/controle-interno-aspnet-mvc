@@ -54,6 +54,19 @@ namespace WeW.WEB.Repositorio
             }
         }
 
+        public List<Produto> ListarFiltro(string pFiltro)
+        {
+            using (Base = new Base())
+            {
+                var strQuery = "SELECT cod, Pro.nome, descricao, preco, Categoria.id as c, Categoria.nome as cate, quantidade FROM Produto Pro";
+                strQuery += " INNER JOIN Categoria ON Categoria.id = Pro.categoria";
+                strQuery += $" WHERE cod LIKE '%{pFiltro}%' OR Pro.nome LIKE '%{pFiltro}%' ORDER BY Pro.nome";
+
+                var retorno = Base.ExecutaComandoComRetorno(strQuery);
+                return ReaderEmList(retorno);
+            }
+        }
+
         public List<Produto> ListarTodos()
         {
             using (Base = new Base())

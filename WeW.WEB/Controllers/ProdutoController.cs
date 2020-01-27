@@ -20,6 +20,19 @@ namespace WeW.WEB.Controllers
             return View(listarProdutos);
         }
 
+        public ActionResult Pesquisar(string Pesquisa)
+        {
+            var listarProdutos = appProduto.ListarTodos();
+
+            if (!string.IsNullOrEmpty(Pesquisa))
+            {
+                var filtro = appProduto.ListarFiltro(Pesquisa);
+                return PartialView("_Produto", filtro);
+            }
+
+            return View(listarProdutos);
+        }
+
         public ActionResult Cadastrar()
         {
             ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");

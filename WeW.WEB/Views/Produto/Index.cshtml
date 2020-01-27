@@ -6,64 +6,33 @@
 
 <h2>Lista de Produtos</h2>
 
+<div>
+    @using (Ajax.BeginForm("Pesquisar", "Produto", new AjaxOptions
+    {
+        HttpMethod = "Get",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "divListaProdutos"
+
+    }))
+    {
+        <div class="navbar-form navbar-right">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" name="Pesquisa" class="form-control" />
+                    <div class="input-group-btn">
+                        <input type="submit" value="Pesquisar" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }   
+</div>
 <p>
     @Html.ActionLink("Cadastrar", "Cadastrar", "", new { @class = "btn btn-primary" })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Cod)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Preco)
-        </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Categoria)
-        </th>
+@Html.Partial("_Produto", Model)
 
-        <th>
-            @Html.DisplayNameFor(model => model.Quantidade)
-        </th>
-        <th>
-            Ações
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Preco)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categoria.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quantidade)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Alterar", new { id = item.Cod }) |
-            @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Cod }) 
-            @*@Html.ActionLink("Deletar", "Deletar", new { id = item.Cod })*@
-        </td>
-    </tr>
-    }
-
-</table>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+ }

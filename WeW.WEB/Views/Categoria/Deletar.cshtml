@@ -5,10 +5,10 @@
 }
 
 <h2>Deletar</h2>
-
-<h3>Deseja realmente deletar essa categoria ?</h3>
+<br />
+<h4>Deseja realmente deletar essa categoria ?</h4>
 <div>
-    <h4>Categoria</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -25,8 +25,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Voltar para Lista", "Index")
+            <input type="submit" value="Delete" class="btn-sm btn-primary" /> |
+            @Html.ActionLink("Voltar para Lista", "Index","", new { @class = "btn btn-primary"})
         </div>
     }
 </div>
