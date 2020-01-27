@@ -8,61 +8,67 @@
 
 <div>
     <h4>Produto</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Cod)
-        </dt>
+    <hr />    
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Detalhes do Produto</h3>
+            </div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Cod)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Cod)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Cod)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Nome)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Descricao)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Descricao)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Preco)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Preco)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Preco)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Preco)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoriaId)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CategoriaId)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Categoria.Nome)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Categoria.Nome)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantidade)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Quantidade)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Quantidade)
-        </dd>
-
-
-
-    </dl>
+                    <dd>
+                        @Html.DisplayFor(model => model.Quantidade)
+                    </dd>
+                </dl>
+            </div>
+        </div>
 </div>
+<br />
+<br />  
 <p>
-    @Html.ActionLink("Editar", "Alterar", new {id = Model.Cod}) |
-    @Html.ActionLink("Voltar a Lista", "Index")
+    @Html.ActionLink("Editar", "Alterar", new {id = Model.Cod}, new { @class = "btn-sm btn-primary" }) |
+    @Html.ActionLink("Voltar a lista", "Index","", new { @class = "btn btn-primary" })
 </p>
