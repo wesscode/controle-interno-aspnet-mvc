@@ -40,7 +40,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Preco, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Preco, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.Preco, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Preco, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -57,7 +57,7 @@
             @Html.LabelFor(model => model.CategoriaId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.CategoriaId, ViewBag.ListarCategoria as SelectList, "Selecione...", new { @class = "form-control col-md-2"})
-                @Html.ValidationMessageFor(model => model.CategoriaId)
+                @Html.ValidationMessageFor(model => model.CategoriaId, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>

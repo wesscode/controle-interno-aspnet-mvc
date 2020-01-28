@@ -37,10 +37,11 @@ namespace WeW.WEB.Repositorio
         //{
         //    if (produto.Cod > 0)
         //    {
-        //        Alterar(produto);
-        //    }
-        //    else {
         //        Inserir(produto);
+        //    }
+        //    else
+        //    {
+        //        Alterar(produto);
         //    }
         //}
 

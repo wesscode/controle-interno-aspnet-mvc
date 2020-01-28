@@ -1,27 +1,28 @@
-﻿@model IEnumerable<WeW.WEB.Models.Produto>
+﻿@using X.PagedList.Mvc;
+@model X.PagedList.PagedList<WeW.WEB.Models.Produto>
 
 <div id="divListaProdutos">
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Cod)
+                Código
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
+                Nome
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descricao)
+                Descrição
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Preco)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Categoria)
+                Preço
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.Quantidade)
+                Categoria
+            </th>
+
+            <th>
+                Quantidade
             </th>
             <th>
                 Ações
@@ -58,4 +59,10 @@
         }
 
     </table>
+
+    <div class="row">
+        <div class="text-center">
+            @Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))
+        </div>
+    </div>
 </div>

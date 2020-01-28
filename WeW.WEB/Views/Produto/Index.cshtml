@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WeW.WEB.Models.Produto>
+﻿@model X.PagedList.PagedList<WeW.WEB.Models.Produto>
 
 @{
     ViewBag.Title = "Produtos";
@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-    }   
+    }
 </div>
 <p>
     @Html.ActionLink("Cadastrar", "Cadastrar", "", new { @class = "btn btn-primary" })
@@ -35,4 +35,4 @@
 
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")
- }
+}

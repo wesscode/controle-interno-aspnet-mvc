@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WeW.WEB.Models;
 using WeW.WEB.Repositorio;
+using X.PagedList;
 
 namespace WeW.WEB.Controllers
 {
@@ -13,24 +14,24 @@ namespace WeW.WEB.Controllers
         ProdutoAplicacao appProduto = new ProdutoAplicacao();
         CategoriaAplicacao appCategoria = new CategoriaAplicacao();
         // GET: Produto
-        public ActionResult Index()
+        public ActionResult Index(int pagina = 1)
         {            
-            var listarProdutos = appProduto.ListarTodos();
+            var listarProdutos = appProduto.ListarTodos().ToPagedList(pagina, 5);
 
             return View(listarProdutos);
         }
 
-        public ActionResult Pesquisar(string Pesquisa)
+        public ActionResult Pesquisar(string Pesquisa, int pagina = 1)
         {
-            var listarProdutos = appProduto.ListarTodos();
+            var listarProdutos = appProduto.ListarTodos().ToPagedList(pagina, 5);
 
             if (!string.IsNullOrEmpty(Pesquisa))
             {
-                var filtro = appProduto.ListarFiltro(Pesquisa);
+                var filtro = appProduto.ListarFiltro(Pesquisa).ToPagedList(pagina, 5);
                 return PartialView("_Produto", filtro);
             }
 
-            return View(listarProdutos);
+            return PartialView("_Produto", listarProdutos);
         }
 
         public ActionResult Cadastrar()
