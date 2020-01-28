@@ -24,7 +24,7 @@ namespace WeW.WEB.Controllers
         public ActionResult Pesquisar(string Pesquisa, int pagina = 1)
         {
             var listarProdutos = appProduto.ListarTodos().ToPagedList(pagina, 5);
-
+            ViewBag.Pesquisa = Pesquisa;
             if (!string.IsNullOrEmpty(Pesquisa))
             {
                 var filtro = appProduto.ListarFiltro(Pesquisa).ToPagedList(pagina, 5);

@@ -1,4 +1,5 @@
 ﻿@using X.PagedList.Mvc;
+@using X.PagedList.Mvc.Common;
 @model X.PagedList.PagedList<WeW.WEB.Models.Produto>
 
 <div id="divListaProdutos">
@@ -16,11 +17,9 @@
             <th>
                 Preço
             </th>
-
             <th>
                 Categoria
             </th>
-
             <th>
                 Quantidade
             </th>
@@ -61,8 +60,8 @@
     </table>
 
     <div class="row">
-        <div class="text-center">
-            @Html.PagedListPager(Model, pagina => Url.Action("Index", new { pagina }))
+        <div class="text-center">         
+            @Html.PagedListPager(Model, pagina => Url.Action("Pesquisar", new { pagina, Pesquisa = ViewBag.Pesquisa }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "divListaProdutos" }))
         </div>
     </div>
 </div>
