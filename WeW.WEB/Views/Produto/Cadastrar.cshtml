@@ -3,6 +3,12 @@
 @{
     ViewBag.Title = "Cadastrar";
 }
+<script>
+    $(document).ready(function(){
+        $('.dinheiro').mask('#.##0,00', { reverse: true });        
+    })
+</script>
+
 <h2>Cadastrar</h2>
 
 @using (Html.BeginForm())
@@ -40,7 +46,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Preco, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Preco, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Preco, new { @class = "form-control dinheiro" })
                 @Html.ValidationMessageFor(model => model.Preco, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -56,7 +62,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CategoriaId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CategoriaId, ViewBag.ListarCategoria as SelectList, "Selecione...", new { @class = "form-control col-md-2"})
+                @Html.DropDownListFor(model => model.CategoriaId, ViewBag.ListarCategoria as SelectList, "Selecione...", new { @class = "form-control col-md-2" })
                 @Html.ValidationMessageFor(model => model.CategoriaId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -67,12 +73,12 @@
         </div>
     </div>
 }
-    <br />
-    <br />
-    <br />
-    <br />
-<div >
-    @Html.ActionLink("Voltar", "Index","", new { @class = "btn btn-primary"})
+<br />
+<br />
+<br />
+<br />
+<div>
+    @Html.ActionLink("Voltar", "Index", "", new { @class = "btn btn-primary" })
 </div>
 
 @section Scripts {

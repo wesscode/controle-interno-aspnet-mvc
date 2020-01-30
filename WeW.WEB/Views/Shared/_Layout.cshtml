@@ -7,6 +7,7 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/bootstrap-united.css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/inputmask")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,14 +25,14 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Produtos", "Index", "Produto")</li>
                     <li>@Html.ActionLink("Categorias", "Index", "Categoria")</li>
-                    
+
                     @*<li>@Html.ActionLink("Registro de Vendas", "Index", "Registro")</li>*@
                 </ul>
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Administração<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Usuários", "Index", "Usuario")</li>                        
+                            <li>@Html.ActionLink("Usuários", "Index", "Usuario")</li>
                         </ul>
                     </li>
                 </ul>
@@ -40,23 +41,23 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">logout<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Sair", "Index", "Login")</li>
-                            <li><a href="#">Esqueci minha Senha</a></li>                            
+                            <li><a href="#">Esqueci minha Senha</a></li>
                         </ul>
                     </li>
                 </ul>
-            </div>           
+            </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Desenvolvido por <a href="http://github.com/wess223">Wesley Alves</a></p>
+            <p>&copy; @DateTime.Now.Year - developed by <a href="http://github.com/wess223">Wesley Alves</a></p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/bootstrap")   
     @RenderSection("scripts", required: false)
 </body>
 </html>
