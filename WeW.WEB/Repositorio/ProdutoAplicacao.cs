@@ -32,19 +32,7 @@ namespace WeW.WEB.Repositorio
                 Base.ExecutaComando(strQuery);
             }
         }
-
-        //public void Salvar(Produto produto)
-        //{
-        //    if (produto.Cod > 0)
-        //    {
-        //        Inserir(produto);
-        //    }
-        //    else
-        //    {
-        //        Alterar(produto);
-        //    }
-        //}
-
+        
         public void Deletar(int id)
         {
             var strQuery = $"DELETE FROM Produto WHERE cod '{id}'";
