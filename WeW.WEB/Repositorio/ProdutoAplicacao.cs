@@ -24,9 +24,9 @@ namespace WeW.WEB.Repositorio
 
         public void Alterar(Produto produto)
         {
+            decimal preco = decimal.Parse(produto.Preco);
             var strQuery = "UPDATE Produto SET";
-            strQuery += $" nome = '{produto.Nome}', descricao = '{produto.Descricao}', preco = '{produto.Preco}', categoria = '{produto.CategoriaId}', quantidade = '{produto.Quantidade}' WHERE cod = '{produto.Cod}'";
-            strQuery.Replace(",", ".");
+            strQuery += $" nome = '{produto.Nome}', descricao = '{produto.Descricao}', preco = {preco.ToString().Replace(",", ".")}, categoria = '{produto.CategoriaId}', quantidade = '{produto.Quantidade}' WHERE cod = '{produto.Cod}'";            
 
             using (Base = new Base())
             {
