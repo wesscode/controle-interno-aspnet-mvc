@@ -13,9 +13,9 @@ namespace WeW.WEB.Repositorio
 
         public void Inserir(Produto produto)
         {
+            decimal preco = decimal.Parse(produto.Preco);
             var strQuery = "INSERT INTO Produto (cod, nome, descricao, preco, categoria, quantidade )";
-                strQuery += $" VALUES ('{produto.Cod}', '{produto.Nome}', '{produto.Descricao}', '{produto.Preco}', '{produto.CategoriaId}', '{produto.Quantidade}')";
-                strQuery.Replace(",", ".");
+                strQuery += $" VALUES ('{produto.Cod}', '{produto.Nome}', '{produto.Descricao}', {preco.ToString().Replace(",",".")}, '{produto.CategoriaId}', '{produto.Quantidade}')";               
             using (Base = new Base())
             {
                 Base.ExecutaComando(strQuery);
