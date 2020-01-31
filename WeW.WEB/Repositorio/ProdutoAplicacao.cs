@@ -15,7 +15,7 @@ namespace WeW.WEB.Repositorio
         {
             var strQuery = "INSERT INTO Produto (cod, nome, descricao, preco, categoria, quantidade )";
                 strQuery += $" VALUES ('{produto.Cod}', '{produto.Nome}', '{produto.Descricao}', '{produto.Preco}', '{produto.CategoriaId}', '{produto.Quantidade}')";
-
+                strQuery.Replace(",", ".");
             using (Base = new Base())
             {
                 Base.ExecutaComando(strQuery);
@@ -26,6 +26,7 @@ namespace WeW.WEB.Repositorio
         {
             var strQuery = "UPDATE Produto SET";
             strQuery += $" nome = '{produto.Nome}', descricao = '{produto.Descricao}', preco = '{produto.Preco}', categoria = '{produto.CategoriaId}', quantidade = '{produto.Quantidade}' WHERE cod = '{produto.Cod}'";
+            strQuery.Replace(",", ".");
 
             using (Base = new Base())
             {
@@ -73,6 +74,7 @@ namespace WeW.WEB.Repositorio
             {
                 var strQuery = "SELECT cod, Pro.nome, descricao, preco, Categoria.id c, Categoria.nome cate, quantidade FROM Produto Pro"
                                +$" INNER JOIN Categoria ON Categoria.id = Pro.categoria WHERE cod = '{id}'";
+                
                 var retorno = Base.ExecutaComandoComRetorno(strQuery);
                 return ReaderEmList(retorno).FirstOrDefault();
             }
@@ -89,7 +91,7 @@ namespace WeW.WEB.Repositorio
                     Cod = int.Parse(reader["cod"].ToString()),
                     Nome = reader["nome"].ToString(),
                     Descricao = reader["descricao"].ToString(),
-                    Preco = double.Parse(reader["preco"].ToString()),                  
+                    Preco = reader["preco"].ToString(),                  
                     Quantidade = int.Parse(reader["quantidade"].ToString()),
                     CategoriaId = int.Parse(reader["c"].ToString()),
                     Categoria = new Categoria()

@@ -3,11 +3,6 @@
 @{
     ViewBag.Title = "Cadastrar";
 }
-<script>
-    $(document).ready(function(){
-        $('.dinheiro').mask('#.##0,00', { reverse: true });        
-    })
-</script>
 
 <h2>Cadastrar</h2>
 
@@ -46,8 +41,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Preco, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Preco, new { @class = "form-control dinheiro" })
-                @Html.ValidationMessageFor(model => model.Preco, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.Preco, new { @class = "form-control dinheiro"})
+                @Html.ValidationMessageFor(model => model.Preco, "", new { @class = "text-danger"})
             </div>
         </div>
 
