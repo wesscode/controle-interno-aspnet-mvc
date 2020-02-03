@@ -13,6 +13,7 @@ namespace WeW.WEB.Controllers.Seguranca
         UsuarioAplicacao appUsuario = new UsuarioAplicacao();
 
         // GET: Usuario
+        [Authorize]
         public ActionResult Index()
         {
             var listarUsuarios = appUsuario.ListarTodos();

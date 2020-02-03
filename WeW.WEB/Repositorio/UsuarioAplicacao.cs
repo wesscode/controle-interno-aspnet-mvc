@@ -67,6 +67,16 @@ namespace WeW.WEB.Repositorio
             }
         }
 
+        public Usuario RecuperarUsuarioLoginSenha(Usuario usuario)
+        {
+            using (Base = new Base())
+            {
+                var strQuery = $"SELECT * FROM Usuario where login = '{usuario.Login}' and senha = '{usuario.Senha}'";
+                var retorno = Base.ExecutaComandoComRetorno(strQuery);
+                return ReaderEmList(retorno).FirstOrDefault();
+            }                          
+        }
+
         private List<Usuario> ReaderEmList(SqlDataReader reader)
         {
             var usuarios = new List<Usuario>();

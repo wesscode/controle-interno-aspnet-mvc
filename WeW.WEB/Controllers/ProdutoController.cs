@@ -14,6 +14,7 @@ namespace WeW.WEB.Controllers
         ProdutoAplicacao appProduto = new ProdutoAplicacao();
         CategoriaAplicacao appCategoria = new CategoriaAplicacao();
         // GET: Produto
+        [Authorize]
         public ActionResult Index(int pagina = 1)
         {            
             var listarProdutos = appProduto.ListarTodos().ToPagedList(pagina, 5);

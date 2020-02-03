@@ -13,6 +13,7 @@ namespace WeW.WEB.Controllers
         CategoriaAplicacao appCategoria = new CategoriaAplicacao();
 
         // GET: Categoria
+        [Authorize]
         public ActionResult Index()
         {
             var listarCategorias = appCategoria.ListarTodos();
