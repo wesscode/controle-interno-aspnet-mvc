@@ -1,54 +1,56 @@
-﻿@model WeW.WEB.Models.Usuario
+﻿@model WeW.WEB.Models.ViewModels.LoginVM
 
-    @{
-        Layout = null;
-    }
+@{
+    Layout = null;
+}
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Login w&w</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Login w&w</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" type="text/css" href="~/Content/bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
 
-        <script src="~/Scripts/Login/jquery-1.11.1.min.js"></script>
-        <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/Login/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
 
-    </head>
-    <body>
-        <div class="sidenav">
-            <div class="login-main-text">
-                <h2>W&W<br> Sistema Controle Interno</h2>
-                <p>Bem-Vindo, Entre com seu usuário e senha.</p>
-            </div>
-            <div class="login-main-text fixed-bottom rodape">
-                <div class="col-sm-12">
-                    <p class="small">developed by <a href="https://github.com/wess223">Wesley Alves</a></p>
-                </div>
+</head>
+<body>
+    <div class="sidenav">
+        <div class="login-main-text">
+            <h2>W&W<br> Sistema Controle Interno</h2>
+            <p>Bem-Vindo, Entre com seu usuário e senha.</p>
+        </div>
+        <div class="login-main-text fixed-bottom rodape">
+            <div class="col-sm-12">
+                <p class="small">developed by <a href="https://github.com/wess223">Wesley Alves</a></p>
             </div>
         </div>
-        <div class="main">
-            <div class="col-md-6 col-sm-12">
-                <div class="login-form">
-                    @using (Html.BeginForm("Entrar", "Login", FormMethod.Post))
-                    {
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Login, new { @class = "control-label" })
-                            @Html.TextBoxFor(model => model.Login, new { @class = "form-control", placeholder = "Login", autofocus = "autofocus" })
-                            @Html.ValidationMessageFor(model => model.Login)
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Senha, new { @class = "control-label" })
-                            @Html.PasswordFor(model => model.Senha, new { @class = "form-control", placeholder = "Senha" })
-                            @Html.ValidationMessageFor(model => model.Senha)
-                        </div>
-                        <button type="submit" class="btn btn-black">Logar</button>
-                    }
-                </div>
+    </div>
+    <div class="main">
+        <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+                @using (Html.BeginForm("Entrar", "Login", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Login, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.Login, new { @class = "form-control", placeholder = "Login", autofocus = "autofocus" })
+                        @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Senha, new { @class = "control-label" })
+                        @Html.PasswordFor(model => model.Senha, new { @class = "form-control", placeholder = "Senha" })
+                        @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                    </div>
+                    <button type="submit" class="btn btn-black">Logar</button>
+                }
             </div>
         </div>
-    </body>
+    </div>
+</body>
+    @Scripts.Render("~/bundles/jqueryval")
 </html>
+
