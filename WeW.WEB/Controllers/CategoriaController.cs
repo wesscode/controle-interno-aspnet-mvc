@@ -8,12 +8,12 @@ using WeW.WEB.Repositorio;
 
 namespace WeW.WEB.Controllers
 {
+    [Authorize]
     public class CategoriaController : Controller
     {
         CategoriaAplicacao appCategoria = new CategoriaAplicacao();
 
-        // GET: Categoria
-        [Authorize]
+        // GET: Categoria       
         public ActionResult Index()
         {
             var listarCategorias = appCategoria.ListarTodos();

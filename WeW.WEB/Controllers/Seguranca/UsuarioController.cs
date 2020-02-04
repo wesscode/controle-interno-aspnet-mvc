@@ -8,12 +8,12 @@ using WeW.WEB.Repositorio;
 
 namespace WeW.WEB.Controllers.Seguranca
 {
+    [Authorize]
     public class UsuarioController : Controller
     {
         UsuarioAplicacao appUsuario = new UsuarioAplicacao();
 
-        // GET: Usuario
-        [Authorize]
+        // GET: Usuario       
         public ActionResult Index()
         {
             var listarUsuarios = appUsuario.ListarTodos();

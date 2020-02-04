@@ -9,12 +9,12 @@ using X.PagedList;
 
 namespace WeW.WEB.Controllers
 {
+    [Authorize]
     public class ProdutoController : Controller
     {
         ProdutoAplicacao appProduto = new ProdutoAplicacao();
         CategoriaAplicacao appCategoria = new CategoriaAplicacao();
-        // GET: Produto
-        [Authorize]
+        // GET: Produto       
         public ActionResult Index(int pagina = 1)
         {            
             var listarProdutos = appProduto.ListarTodos().ToPagedList(pagina, 5);
