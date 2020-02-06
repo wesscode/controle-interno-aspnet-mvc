@@ -31,7 +31,7 @@ namespace WeW.WEB.Controllers.Seguranca
         {
             if (ModelState.IsValid)
             {
-                appUsuario.Inserir(usuario);
+                appUsuario.Salvar(usuario);
                 return RedirectToAction(nameof(Index));
             }
             return View(usuario);
@@ -46,18 +46,37 @@ namespace WeW.WEB.Controllers.Seguranca
             }
             return View(usuario);
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Alterar(Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                appUsuario.Alterar(usuario);
+                appUsuario.Salvar(usuario);
                 return RedirectToAction(nameof(Index));
             }
-            
+
             return View(usuario);
+        }
+
+        public ActionResult Deletar(int id)
+        {
+            var usuario = appUsuario.ListarPorId(id);
+
+            if (usuario == null)
+            {
+                return HttpNotFound();
+            }
+            return View(usuario);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Deletar(Usuario usuario)
+        {
+            appUsuario.Deletar(usuario.Id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

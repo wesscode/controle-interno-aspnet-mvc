@@ -33,10 +33,9 @@ namespace WeW.WEB.Controllers
                     FormsAuthentication.SetAuthCookie(loginVM.Login, false);
                     TempData["LoginName"] = loginVM.Login;
                     return RedirectToAction("Index", "Home");
-                }
-                
+                }               
             }
-
+            TempData["error"] = "Usúario ou senha inválidos.";
             return View("Index", loginVM);
         }
 

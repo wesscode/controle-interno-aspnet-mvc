@@ -17,6 +17,20 @@
     <script src="~/Scripts/Login/jquery-1.11.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 
+    <script>
+        if ($('#success').val()) {
+            displayMessage($('#success').val(), 'success');
+        }
+        if ($('#info').val()) {
+            displayMessage($('#info').val(), 'info');
+        }
+        if ($('#warning').val()) {
+            displayMessage($('#warning').val(), 'warning');
+        }
+        if ($('#error').val()) {
+            displayMessage($('#error').val(), 'error');
+        }
+    </script>
 </head>
 <body>
     <div class="sidenav">
@@ -30,6 +44,14 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="success"
+           value="@TempData["success"]" />
+    <input type="hidden" id="info"
+           value="@TempData["info"]" />
+    <input type="hidden" id="warning"
+           value="@TempData["warning"]" />
+    <input type="hidden" id="error"
+           value="@TempData["error"]" />
     <div class="main">
         <div class="col-md-6 col-sm-12">
             <div class="login-form">
@@ -51,6 +73,5 @@
         </div>
     </div>
 </body>
-    @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jqueryval")
 </html>
-

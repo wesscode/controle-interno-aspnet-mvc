@@ -57,6 +57,16 @@ namespace WeW.WEB.Repositorio
             }
         }
 
+        public Categoria ListarPorNome(string nome)
+        {
+            using (Base = new Base())
+            {
+                string strQuery = $"SELECT id, nome FROM Categoria WHERE nome = '{nome}'";
+                var retorno = Base.ExecutaComandoComRetorno(strQuery);
+                return ReaderEmList(retorno).FirstOrDefault();
+            }
+        }
+
         private List<Categoria> ReaderEmList(SqlDataReader reader)
         {
             var categoria = new List<Categoria>();

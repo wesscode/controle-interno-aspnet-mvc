@@ -11,7 +11,7 @@ namespace WeW.WEB.Repositorio
     {
         private Base Base;
 
-        public void Inserir(Usuario usuario)
+        private void Inserir(Usuario usuario)
         {
             var strQuery = $"INSERT INTO Usuario (nome, email, login, senha) VALUES ('{usuario.Nome}', '{usuario.Email}', '{usuario.Login}', '{usuario.Senha}')";
             using (Base = new Base())
@@ -20,7 +20,7 @@ namespace WeW.WEB.Repositorio
             }
             
         }
-        public void Alterar(Usuario usuario)
+        private void Alterar(Usuario usuario)
         {
             var strQuery = $"UPDATE Usuario SET nome = '{usuario.Nome}', email = '{usuario.Email}', login = '{usuario.Login}', senha = '{usuario.Senha}'";
                 strQuery += $" WHERE id = '{usuario.Id}'";
@@ -29,22 +29,24 @@ namespace WeW.WEB.Repositorio
                 Base.ExecutaComando(strQuery);
             }
         }
-
-        //public void Salvar(Produto produto)
-        //{
-        //    if (produto.Cod > 0)
-        //    {
-        //        Inserir(produto);
-        //    }
-        //    else
-        //    {
-        //        Alterar(produto);
-        //    }
-        //}
-
-        public void Deletar()
+        public void Salvar(Usuario usuario)
         {
-
+            if (usuario.Id > 0)
+            {               
+                Alterar(usuario);
+            }
+            else
+            {
+                Inserir(usuario);
+            }
+        }
+        public void Deletar(int id)
+        {
+            var strQuery = $"DELETE FROM Usuario WHERE Id = '{id}'";
+            using (Base = new Base())
+            {
+                Base.ExecutaComando(strQuery);
+            }
         }
 
         public List<Usuario> ListarTodos()

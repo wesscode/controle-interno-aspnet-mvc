@@ -7,8 +7,32 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/bootstrap-united.css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <script>
+          if ($('#success').val()) {
+                displayMessage($('#success').val(), 'success');
+            }
+            if ($('#info').val()) {
+                displayMessage($('#info').val(), 'info');
+            }
+            if ($('#warning').val()) {
+                displayMessage($('#warning').val(), 'warning');
+            }
+            if ($('#error').val()) {
+                displayMessage($('#error').val(), 'error');
+            }
+    </script>
 </head>
 <body>
+    <input type="hidden" id="success"
+           value="@TempData["success"]" />
+    <input type="hidden" id="info"
+           value="@TempData["info"]" />
+    <input type="hidden" id="warning"
+           value="@TempData["warning"]" />
+    <input type="hidden" id="error"
+           value="@TempData["error"]" />
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -39,7 +63,7 @@
                     <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">logout<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Sair", "Logout", "Login")</li>                            
+                            <li>@Html.ActionLink("Sair", "Logout", "Login")</li>
                         </ul>
                     </li>
                 </ul>

@@ -30,6 +30,11 @@ namespace WeW.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (appCategoria.ListarPorNome(categoria.Nome) != null)
+                {
+                    ModelState.AddModelError("Nome", "nome da categoria, já cadastrado");
+                    return View(categoria);
+                }
                 appCategoria.Inserir(categoria);
                 return RedirectToAction(nameof(Index));
             }
@@ -76,7 +81,6 @@ namespace WeW.WEB.Controllers
         public ActionResult Deletar(Categoria categoria)
         {
             appCategoria.Deletar(categoria.Id);
-
             return RedirectToAction(nameof(Index));
         }
 

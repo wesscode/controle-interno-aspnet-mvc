@@ -16,7 +16,7 @@ namespace WeW.WEB.Controllers
         CategoriaAplicacao appCategoria = new CategoriaAplicacao();
         // GET: Produto       
         public ActionResult Index(int pagina = 1)
-        {            
+        {
             var listarProdutos = appProduto.ListarTodos().ToPagedList(pagina, 5);
 
             return View(listarProdutos);
@@ -46,12 +46,22 @@ namespace WeW.WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Cadastrar(Produto produto)
         {
-            ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
             if (ModelState.IsValid)
             {
-                appProduto.Inserir(produto);
-                return RedirectToAction(nameof(Index));
-            }           
+                if (appProduto.ListarPorId(produto.Cod) != null)
+                {
+                    ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
+                    ModelState.AddModelError("Cod", "produto com código já cadastrado");
+                    return View(produto);
+                }
+                else
+                {
+                    appProduto.Inserir(produto);
+                    return RedirectToAction(nameof(Index));
+                }
+                
+            }            
+            ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
 
             return View(produto);
         }
@@ -72,7 +82,7 @@ namespace WeW.WEB.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Alterar(Produto produto)
         {
-         ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
+            ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
 
             if (ModelState.IsValid)
             {
@@ -83,7 +93,7 @@ namespace WeW.WEB.Controllers
         }
 
         public ActionResult Detalhes(int id)
-        {           
+        {
             var produto = appProduto.ListarPorId(id);
             if (produto == null)
             {
