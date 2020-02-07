@@ -34,8 +34,11 @@ namespace WeW.WEB.Controllers
                     TempData["LoginName"] = loginVM.Login;
                     return RedirectToAction("Index", "Home");
                 }               
-            }
-            TempData["error"] = "Usúario ou senha inválidos.";
+            }            
+            TempData["warning"] = "Mensagem de warning!!";
+            TempData["success"] = "Mensagem de sucesso!!";
+            TempData["info"] = "Mensagem de informação!!";
+            TempData["error"] = "Mensagem de erro!!";
             return View("Index", loginVM);
         }
 

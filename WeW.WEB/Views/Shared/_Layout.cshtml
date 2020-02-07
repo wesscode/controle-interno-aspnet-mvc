@@ -4,12 +4,41 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Loja Virtual</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/toastr.css" />
+    <script src="~/Scripts/toastr.js"></script>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/bootstrap-united.css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
 
-    <script>
-          if ($('#success').val()) {
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/inputmask")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var displayMessage = function (message, msgType) {
+                toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+                toastr[msgType](message);
+            };
+
+            if ($('#success').val()) {
                 displayMessage($('#success').val(), 'success');
             }
             if ($('#info').val()) {
@@ -21,6 +50,7 @@
             if ($('#error').val()) {
                 displayMessage($('#error').val(), 'error');
             }
+        });
     </script>
 </head>
 <body>
@@ -77,10 +107,6 @@
             <p>&copy; @DateTime.Now.Year - developed by <a href="http://github.com/wess223">Wesley Alves</a></p>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/inputmask")
-    @RenderSection("scripts", required: false)
+ 
 </body>
 </html>

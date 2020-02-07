@@ -51,7 +51,10 @@ namespace WeW.WEB.Controllers
                 if (appProduto.ListarPorId(produto.Cod) != null)
                 {
                     ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
-                    ModelState.AddModelError("Cod", "produto com código já cadastrado");
+                    TempData["warning"] = "Mensagem de warning!!";
+                    TempData["success"] = "Mensagem de sucesso!!";
+                    TempData["info"] = "Mensagem de informação!!";
+                    TempData["error"] = "Mensagem de erro!!";
                     return View(produto);
                 }
                 else
