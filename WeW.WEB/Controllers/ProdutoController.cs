@@ -51,15 +51,15 @@ namespace WeW.WEB.Controllers
                 if (appProduto.ListarPorId(produto.Cod) != null)
                 {
                     ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
-                    TempData["warning"] = "Mensagem de warning!!";
-                    TempData["success"] = "Mensagem de sucesso!!";
-                    TempData["info"] = "Mensagem de informação!!";
-                    TempData["error"] = "Mensagem de erro!!";
+                    //TempData["warning"] = "Mensagem de warning!!";                   
+                    //TempData["info"] = "Mensagem de informação!!";
+                    TempData["error"] = "Código já cadastrado.";
                     return View(produto);
                 }
                 else
                 {
                     appProduto.Inserir(produto);
+                    TempData["success"] = "Produto cadastrado com sucesso.";
                     return RedirectToAction(nameof(Index));
                 }
                 

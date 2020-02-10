@@ -13,11 +13,12 @@
 
     <link rel="stylesheet" type="text/css" href="~/Content/bootstrap4.min.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
-    <link rel="stylesheet" type="text/css" href="~/Content/toastr.css"/>
+    <link rel="stylesheet" type="text/css" href="~/Content/toastr.css" />
 
-    <script src="~/Scripts/Login/jquery-1.11.1.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/toastr.js"></script> 
+    <script src="~/Scripts/toastr.js"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -58,6 +59,7 @@
     </script>
 </head>
 <body>
+    
     <div class="sidenav">
         <div class="login-main-text">
             <h2>W&W<br> Sistema Controle Interno</h2>
@@ -95,8 +97,8 @@
                     <button type="submit" class="btn btn-black">Logar</button>
                 }
             </div>
+            
         </div>
     </div>
 </body>
-@Scripts.Render("~/bundles/jqueryval")
 </html>

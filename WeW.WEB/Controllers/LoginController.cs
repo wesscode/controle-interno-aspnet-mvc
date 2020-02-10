@@ -25,20 +25,27 @@ namespace WeW.WEB.Controllers
         [HttpPost]
         public ActionResult Entrar(LoginVM loginVM)
         {
-            if (ModelState.IsValid)
+            try
             {
-                Usuario usuarioAutenticado = appUsuario.RecuperarUsuarioLoginSenha(new Usuario { Login = loginVM.Login, Senha = loginVM.Senha });
-                if (usuarioAutenticado != null)
+                if (ModelState.IsValid)
                 {
-                    FormsAuthentication.SetAuthCookie(loginVM.Login, false);
-                    TempData["LoginName"] = loginVM.Login;
-                    return RedirectToAction("Index", "Home");
-                }               
-            }            
-            TempData["warning"] = "Mensagem de warning!!";
-            TempData["success"] = "Mensagem de sucesso!!";
-            TempData["info"] = "Mensagem de informação!!";
-            TempData["error"] = "Mensagem de erro!!";
+                    Usuario usuarioAutenticado = appUsuario.RecuperarUsuarioLoginSenha(new Usuario { Login = loginVM.Login, Senha = loginVM.Senha });
+
+                    if (usuarioAutenticado != null)
+                    {
+                        FormsAuthentication.SetAuthCookie(loginVM.Login, false);
+                        TempData["LoginName"] = loginVM.Login;
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+                       
+            TempData["warning"] = "Login ou Senha inválidas";          
             return View("Index", loginVM);
         }
 

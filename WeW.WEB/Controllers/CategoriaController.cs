@@ -32,10 +32,11 @@ namespace WeW.WEB.Controllers
             {
                 if (appCategoria.ListarPorNome(categoria.Nome) != null)
                 {
-                    ModelState.AddModelError("Nome", "nome da categoria, já cadastrado");
+                    TempData["error"] = "Nome da categoria já cadastrada.";
                     return View(categoria);
                 }
-                appCategoria.Inserir(categoria);
+                appCategoria.Salvar(categoria);
+                TempData["success"] = "Categoria cadastrada. ";
                 return RedirectToAction(nameof(Index));
             }
             return View(categoria);
@@ -58,8 +59,18 @@ namespace WeW.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
-                appCategoria.Alterar(categoria);
-                return RedirectToAction(nameof(Index));
+                if (appCategoria.ListarPorNome(categoria.Nome) != null)
+                {
+                    TempData["error"] = "Nome da categoria já cadastrada.";
+                    return View(categoria);
+                }
+                else
+                {
+                    appCategoria.Salvar(categoria);
+                    TempData["success"] = "Nome da categoria alterada";
+                    return RedirectToAction(nameof(Index));
+                }
+                
             }
             return View(categoria);
         }

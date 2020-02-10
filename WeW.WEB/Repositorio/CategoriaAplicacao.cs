@@ -11,7 +11,7 @@ namespace WeW.WEB.Repositorio
     {
         private Base Base;
 
-        public void Inserir(Categoria categoria)
+        private void Inserir(Categoria categoria)
         {
             var strQuery = $"INSERT INTO Categoria (nome) VALUES ('{categoria.Nome}')";
             using (Base = new Base())
@@ -19,12 +19,24 @@ namespace WeW.WEB.Repositorio
                 Base.ExecutaComando(strQuery);
             }
         }
-        public void Alterar(Categoria categoria)
+        private void Alterar(Categoria categoria)
         {
             var strQuery = $"UPDATE Categoria SET nome = '{categoria.Nome}' WHERE id = '{categoria.Id}'";
             using (Base = new Base())
             {
                 Base.ExecutaComando(strQuery);
+            }
+        }
+
+        public void Salvar(Categoria categoria)
+        {
+            if (categoria.Id > 0)
+            {
+                Alterar(categoria);
+            }
+            else
+            {
+                Inserir(categoria);
             }
         }
 
