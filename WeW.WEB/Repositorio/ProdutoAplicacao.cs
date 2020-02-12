@@ -68,7 +68,7 @@ namespace WeW.WEB.Repositorio
             }
         }
 
-        public Produto ListarPorId(int id)
+        public Produto ListarPorId(long id)
         {
             using (Base = new Base())
             {
@@ -88,7 +88,7 @@ namespace WeW.WEB.Repositorio
             {
                 var TempoObjeto = new Produto()
                 {
-                    Cod = int.Parse(reader["cod"].ToString()),
+                    Cod = long.Parse(reader["cod"].ToString()),
                     Nome = reader["nome"].ToString(),
                     Descricao = reader["descricao"].ToString(),
                     Preco = reader["preco"].ToString(),                  

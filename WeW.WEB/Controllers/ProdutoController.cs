@@ -17,18 +17,18 @@ namespace WeW.WEB.Controllers
         // GET: Produto       
         public ActionResult Index(int pagina = 1)
         {
-            var listarProdutos = appProduto.ListarTodos().ToPagedList(pagina, 5);
+            var listarProdutos = appProduto.ListarTodos().ToPagedList(pagina, 10);
 
             return View(listarProdutos);
         }
 
         public ActionResult Pesquisar(string Pesquisa, int pagina = 1)
         {
-            var listarProdutos = appProduto.ListarTodos().ToPagedList(pagina, 5);
+            var listarProdutos = appProduto.ListarTodos().ToPagedList(pagina, 10);
             ViewBag.Pesquisa = Pesquisa;
             if (!string.IsNullOrEmpty(Pesquisa))
             {
-                var filtro = appProduto.ListarFiltro(Pesquisa).ToPagedList(pagina, 5);
+                var filtro = appProduto.ListarFiltro(Pesquisa).ToPagedList(pagina, 10);
                 return PartialView("_Produto", filtro);
             }
 
@@ -50,9 +50,7 @@ namespace WeW.WEB.Controllers
             {
                 if (appProduto.ListarPorId(produto.Cod) != null)
                 {
-                    ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
-                    //TempData["warning"] = "Mensagem de warning!!";                   
-                    //TempData["info"] = "Mensagem de informação!!";
+                    ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");                   
                     TempData["error"] = "Código já cadastrado.";
                     return View(produto);
                 }
@@ -62,8 +60,8 @@ namespace WeW.WEB.Controllers
                     TempData["success"] = "Produto cadastrado com sucesso.";
                     return RedirectToAction(nameof(Index));
                 }
-                
-            }            
+
+            }
             ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
 
             return View(produto);
@@ -90,7 +88,9 @@ namespace WeW.WEB.Controllers
             if (ModelState.IsValid)
             {
                 appProduto.Alterar(produto);
+                TempData["success"] = " Alterado com sucesso";
                 return RedirectToAction(nameof(Index));
+
             }
             return View(produto);
         }

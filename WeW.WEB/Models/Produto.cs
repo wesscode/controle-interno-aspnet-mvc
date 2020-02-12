@@ -10,7 +10,7 @@ namespace WeW.WEB.Models
     {
         [Required]
         [Display(Name = "Código")]
-        public int Cod { get; set; }
+        public long Cod { get; set; }
 
         [Required]
         public string Nome { get; set; }
