@@ -38,7 +38,6 @@ namespace WeW.WEB.Controllers
         public ActionResult Cadastrar()
         {
             ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
-
             return View();
         }
 
