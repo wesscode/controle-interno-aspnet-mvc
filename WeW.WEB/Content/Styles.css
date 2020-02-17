@@ -62,7 +62,7 @@ body {
 
 
 .login-main-text {
-    margin-top: 15%;
+    margin-top: 7%;
     padding: 40px;
     color: #fff;
     font-style: italic;
@@ -79,5 +79,7 @@ body {
 
 .rodape {
     text-align: center;
-    color: #000;   
+    color: #000;
+    font-style: italic;
+    margin-top: 7%;
 }
