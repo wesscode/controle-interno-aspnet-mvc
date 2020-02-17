@@ -57,6 +57,7 @@
     <style>
         footer p {
             font-style: italic;
+            text-align: center;
         }
     </style>
 </head>
@@ -110,7 +111,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="fixed-bottom">
             <p>&copy; @DateTime.Now.Year - developed by <a href="http://github.com/wess223">Wesley Alves</a></p>
         </footer>
     </div>
