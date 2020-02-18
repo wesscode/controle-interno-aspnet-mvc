@@ -23,6 +23,7 @@ namespace WeW.WEB.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Entrar(LoginVM loginVM)
         {
             try
@@ -30,7 +31,7 @@ namespace WeW.WEB.Controllers
                 if (ModelState.IsValid)
                 {
                     Usuario usuarioAutenticado = appUsuario.RecuperarUsuarioLoginSenha(new Usuario { Login = loginVM.Login, Senha = loginVM.Senha });
-
+             
                     if (usuarioAutenticado != null)
                     {
                         FormsAuthentication.SetAuthCookie(loginVM.Login, false);
