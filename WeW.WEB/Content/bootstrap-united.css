@@ -4476,7 +4476,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: #ffffff;
+    color: #fff;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
@@ -6653,9 +6653,4 @@ button.close {
 .navbar-inverse .badge {
   background-color: #fff;
   color: #772953;
-}
-@media (max-width: 767px) {
-  .navbar .dropdown-menu a {
-    color: #fff;
-  }
 }

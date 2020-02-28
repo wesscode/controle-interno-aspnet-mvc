@@ -22,8 +22,7 @@ namespace WeW.WEB.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]       
         public ActionResult Entrar(LoginVM loginVM)
         {
             try
@@ -35,7 +34,7 @@ namespace WeW.WEB.Controllers
                     if (usuarioAutenticado != null)
                     {
                         FormsAuthentication.SetAuthCookie(loginVM.Login, false);
-                        TempData["LoginName"] = loginVM.Login;
+                        TempData["Nome"] = loginVM.Login;
                         return RedirectToAction("Index", "Home");
                     }
                 }
