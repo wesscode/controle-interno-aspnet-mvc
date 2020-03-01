@@ -29,8 +29,8 @@ namespace WeW.WEB
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/inputmask").Include(
-            "~/Scripts/jquery.mask.js",
-            "~/Scripts/mask.js"));
+            "~/Scripts/jquery-mask/dist/jquery.mask.js",
+            "~/Scripts/jquery-mask/dist/mask.js"));
         }
     }
 }
