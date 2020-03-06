@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using WeW.WEB.Helpers;
 using WeW.WEB.Models;
 
 namespace WeW.WEB.Repositorio
@@ -22,7 +23,7 @@ namespace WeW.WEB.Repositorio
         }
         private void Alterar(Usuario usuario)
         {
-            var strQuery = $"UPDATE Usuario SET nome = '{usuario.Nome}', email = '{usuario.Email}', login = '{usuario.Login}', senha = '{usuario.Senha}'";
+            var strQuery = $"UPDATE Usuario SET nome = '{usuario.Nome}', email = '{usuario.Email}', login = '{usuario.Login}'";
                 strQuery += $" WHERE id = '{usuario.Id}'";
             using (Base = new Base())
             {
@@ -53,7 +54,7 @@ namespace WeW.WEB.Repositorio
         {
             using (Base = new Base())
             {
-                var strQuery = "SELECT * FROM Usuario";
+                var strQuery = "SELECT id, nome, email, login, senha FROM Usuario";
                 var retorno = Base.ExecutaComandoComRetorno(strQuery);
                 return ReaderEmList(retorno);
             }
@@ -63,17 +64,17 @@ namespace WeW.WEB.Repositorio
         {
             using (Base = new Base())
             {
-                var strQuery = $"SELECT * FROM Usuario WHERE id = '{id}'";
+                var strQuery = $"SELECT id, nome, email, login, senha FROM Usuario WHERE id = '{id}'";
                 var retorno = Base.ExecutaComandoComRetorno(strQuery);
                 return ReaderEmList(retorno).FirstOrDefault();
             }
         }
 
-        public Usuario RecuperarUsuarioLoginSenha(Usuario usuario)
+        public Usuario ValidaUsuarioLoginSenha(Usuario usuario)
         {
             using (Base = new Base())
             {
-                var strQuery = $"SELECT * FROM Usuario where login = '{usuario.Login}' and senha = '{usuario.Senha}'";
+                var strQuery = $"SELECT * FROM Usuario where login = '{usuario.Login}' and senha = '{CriptoHelper.HashMD5(usuario.Senha)}'";
                 var retorno = Base.ExecutaComandoComRetorno(strQuery);
                 return ReaderEmList(retorno).FirstOrDefault();
             }                          
@@ -91,7 +92,7 @@ namespace WeW.WEB.Repositorio
                     Nome = reader["nome"].ToString(),
                     Email = reader["email"].ToString(),
                     Login = reader["login"].ToString(),
-                    Senha = reader["senha"].ToString()
+                    Senha = reader["senha"].ToString(),
                 };
                 usuarios.Add(TempoObjeto);
             }

@@ -29,7 +29,7 @@ namespace WeW.WEB.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Usuario usuarioAutenticado = appUsuario.RecuperarUsuarioLoginSenha(new Usuario { Login = loginVM.Login, Senha = loginVM.Senha });
+                    Usuario usuarioAutenticado = appUsuario.ValidaUsuarioLoginSenha(new Usuario { Login = loginVM.Login, Senha = loginVM.Senha });
              
                     if (usuarioAutenticado != null)
                     {
@@ -51,48 +51,9 @@ namespace WeW.WEB.Controllers
 
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
-            TempData["LoginName"] = null;
+            FormsAuthentication.SignOut();            
             return View("Index");
         }
-
-        //public class SessionContext
-        //{
-        //    private UsuarioAplicacao usuarioAplicacao = new UsuarioAplicacao();
-
-        //    public void SetAuthenticationToken(string name, bool isPersistant, Usuario userData)
-        //    {
-        //        string data = null;
-        //        if (userData != null)
-        //        {
-        //            data = new JavaScriptSerializer().Serialize(userData);
-        //        }
-
-        //        FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,name, DateTime.Now, DateTime.Now.AddDays(1), isPersistant, userData.ToString());
-
-        //        string cookieData = FormsAuthentication.Encrypt(ticket);
-        //        HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, cookieData)
-        //        {
-        //            HttpOnly = true,
-        //            Expires = ticket.Expiration
-        //        };
-
-        //        HttpContext.Current.Response.Cookies.Add(cookie);
-        //    }
-
-        //    public Usuario GetUserData()
-        //    {
-        //        Usuario userData = null;
-               
-        //            HttpCookie cookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
-        //            if (cookie != null)
-        //            {
-        //                FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(cookie.Value);
-        //                userData = JsonConvert.DeserializeObject<Usuario>(ticket.UserData);
-        //            }
-              
-        //        return userData;
-        //    }
-        //}
+        
     }
 }

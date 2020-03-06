@@ -99,8 +99,9 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right ">
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">@TempData["Nome"]<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true"><i class="fa fa-user-circle-o" aria-hidden="true"></i> @User.Identity.Name<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Alterar senha", "Index", "Usuario")</li>
                             <li>@Html.ActionLink("Sair", "Logout", "Login")</li>
                         </ul>
                     </li>

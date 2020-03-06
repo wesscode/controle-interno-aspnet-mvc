@@ -78,5 +78,10 @@ namespace WeW.WEB.Controllers.Seguranca
             appUsuario.Deletar(usuario.Id);
             return RedirectToAction(nameof(Index));
         }
+
+        public ActionResult AlterarSenha()
+        {
+            return View();
+        }
     }
 }
