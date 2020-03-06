@@ -18,7 +18,7 @@ namespace WeW.WEB.Models
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
 
-        [Required(ErrorMessage = "Preco é um campo Obrigatório.")]
+        [Required(ErrorMessage = "Preco é um campo Obrigatório.")]        
         [Display(Name = "Preço")]        
         public string Preco { get; set; }
 

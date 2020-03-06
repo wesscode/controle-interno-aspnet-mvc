@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WeW.WEB.Models;
+using WeW.WEB.Models.ViewModels;
 using WeW.WEB.Repositorio;
 
 namespace WeW.WEB.Controllers.Seguranca
@@ -49,15 +50,17 @@ namespace WeW.WEB.Controllers.Seguranca
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Alterar(Usuario usuario)
+        public ActionResult Alterar(UsuarioVM usuarioVM)
         {
             if (ModelState.IsValid)
             {
+                Usuario usuario = new Usuario { Id = usuarioVM.Id, Nome = usuarioVM.Nome, Email = usuarioVM.Email, Login = usuarioVM.Login };
                 appUsuario.Salvar(usuario);
+
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(usuario);
+            return View(usuarioVM);
         }
 
         public ActionResult Deletar(int id)

@@ -20,10 +20,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Login)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Senha)
-        </th>
-
+        <th>Ações</th>
         <th></th>
     </tr>
 
@@ -39,10 +36,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Login)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Senha)
-            </td>
-
+           
             <td>
                 @Html.ActionLink("Editar", "Alterar", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Deletar", new { id = item.Id })

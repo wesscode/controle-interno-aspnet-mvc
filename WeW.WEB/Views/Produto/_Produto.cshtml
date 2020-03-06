@@ -2,9 +2,15 @@
 @using X.PagedList.Mvc.Common;
 @model X.PagedList.PagedList<WeW.WEB.Models.Produto>
 
+<style>
+    .cor {
+        color: #8b008b;
+    }
+</style>
+
 <div id="divListaProdutos">
     <table class="table">
-        <tr>
+        <tr class="cor">
             <th>
                 Código
             </th>
@@ -28,35 +34,46 @@
             </th>
             <th></th>
         </tr>
-
-        @foreach (var item in Model)
+        @{ 
+        if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cod)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Preco)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Categoria.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantidade)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Alterar", new { id = item.Cod }) |
+                        @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Cod })
+                    </td>
+                </tr>
+            }
+        }
+        else
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cod)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descricao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Preco)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Categoria.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantidade)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Alterar", new { id = item.Cod }) |
-                    @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Cod })
-                </td>
+                <td></td>
+                <td colspan="8" style="color:#8b008b">Nenhum Registro encontrado</td>
+                <td></td>
             </tr>
         }
-
+        }
     </table>
 
     <div class="row">

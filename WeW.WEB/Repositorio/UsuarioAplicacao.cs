@@ -54,7 +54,7 @@ namespace WeW.WEB.Repositorio
         {
             using (Base = new Base())
             {
-                var strQuery = "SELECT id, nome, email, login, senha FROM Usuario";
+                var strQuery = "SELECT id, nome, email, login FROM Usuario";
                 var retorno = Base.ExecutaComandoComRetorno(strQuery);
                 return ReaderEmList(retorno);
             }
@@ -64,7 +64,7 @@ namespace WeW.WEB.Repositorio
         {
             using (Base = new Base())
             {
-                var strQuery = $"SELECT id, nome, email, login, senha FROM Usuario WHERE id = '{id}'";
+                var strQuery = $"SELECT id, nome, email, login FROM Usuario WHERE id = '{id}'";
                 var retorno = Base.ExecutaComandoComRetorno(strQuery);
                 return ReaderEmList(retorno).FirstOrDefault();
             }
@@ -91,8 +91,7 @@ namespace WeW.WEB.Repositorio
                     Id = int.Parse(reader["id"].ToString()),
                     Nome = reader["nome"].ToString(),
                     Email = reader["email"].ToString(),
-                    Login = reader["login"].ToString(),
-                    Senha = reader["senha"].ToString(),
+                    Login = reader["login"].ToString(),                 
                 };
                 usuarios.Add(TempoObjeto);
             }

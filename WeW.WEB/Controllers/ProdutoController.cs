@@ -17,18 +17,18 @@ namespace WeW.WEB.Controllers
         // GET: Produto       
         public ActionResult Index(int pagina = 1)
         {
-            var listarProdutos = appProduto.ListarTodos().ToPagedList(pagina, 10);
+            var listarProdutos = appProduto.ListarTodos().ToPagedList(pagina, 8);
 
             return View(listarProdutos);
         }
 
         public ActionResult Pesquisar(string Pesquisa, int pagina = 1)
         {
-            var listarProdutos = appProduto.ListarTodos().ToPagedList(pagina, 10);
+            var listarProdutos = appProduto.ListarTodos().ToPagedList(pagina, 8);
             ViewBag.Pesquisa = Pesquisa;
             if (!string.IsNullOrEmpty(Pesquisa))
             {
-                var filtro = appProduto.ListarFiltro(Pesquisa).ToPagedList(pagina, 10);
+                var filtro = appProduto.ListarFiltro(Pesquisa).ToPagedList(pagina, 8);
                 return PartialView("_Produto", filtro);
             }
 
@@ -66,7 +66,7 @@ namespace WeW.WEB.Controllers
             return View(produto);
         }
 
-        public ActionResult Alterar(int id)
+        public ActionResult Alterar(long id)
         {
             var produto = appProduto.ListarPorId(id);
             ViewBag.ListarCategoria = new SelectList(appCategoria.ListarTodos(), "id", "nome");
@@ -94,7 +94,7 @@ namespace WeW.WEB.Controllers
             return View(produto);
         }
 
-        public ActionResult Detalhes(int id)
+        public ActionResult Detalhes(long id)
         {
             var produto = appProduto.ListarPorId(id);
             if (produto == null)
