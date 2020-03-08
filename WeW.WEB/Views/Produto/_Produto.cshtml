@@ -11,74 +11,65 @@
 <div id="divListaProdutos">
     <table class="table">
         <tr class="cor">
-            <th>
-                Código
-            </th>
-            <th>
-                Nome
-            </th>
-            <th>
-                Descrição
-            </th>
-            <th>
-                Preço
-            </th>
-            <th>
-                Categoria
-            </th>
-            <th>
-                Quantidade
-            </th>
-            <th>
-                Ações
-            </th>
+
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Categoria</th>
+            <th>Quantidade</th>
+            <th>Ações</th>
             <th></th>
+
         </tr>
-        @{ 
-        if (Model != null)
-        {
-            foreach (var item in Model)
+        @{
+            if (Model.TotalItemCount != 0)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cod)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descricao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Preco)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Categoria.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantidade)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Alterar", new { id = item.Cod }) |
+                            @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Cod })
+                        </td>
+                    </tr>
+                }
+            }
+            else
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cod)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Descricao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Preco)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Categoria.Nome)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Quantidade)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Editar", "Alterar", new { id = item.Cod }) |
-                        @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Cod })
-                    </td>
+                    <td></td>
+                    <td colspan="8" style="color:#8b008b">Nenhum Registro encontrado</td>
+                    <td></td>
                 </tr>
             }
         }
-        else
-        {
-            <tr>
-                <td></td>
-                <td colspan="8" style="color:#8b008b">Nenhum Registro encontrado</td>
-                <td></td>
-            </tr>
-        }
-        }
     </table>
-
-    <div class="row">
-        <div class="text-center">         
-            @Html.PagedListPager(Model, pagina => Url.Action("Pesquisar", new { pagina, Pesquisa = ViewBag.Pesquisa }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "divListaProdutos" }))
+    @if (Model.TotalItemCount > 1)
+    {
+        <div class="row">
+            <div class="text-center">
+                @Html.PagedListPager(Model, pagina => Url.Action("Pesquisar", new { pagina, Pesquisa = ViewBag.Pesquisa }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "divListaProdutos" }))
+            </div>
         </div>
-    </div>
+    }
+
 </div>

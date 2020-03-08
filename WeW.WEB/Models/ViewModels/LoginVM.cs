@@ -14,5 +14,7 @@ namespace WeW.WEB.Models.ViewModels
         [Required(ErrorMessage = "Senha é um campo Obrigatório")]
         public string Senha { get; set; }
 
+        //public string Email { get; set; }
+
     }
 }

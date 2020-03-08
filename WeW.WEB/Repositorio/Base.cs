@@ -20,7 +20,7 @@ namespace WeW.WEB.Repositorio
 
         public void ExecutaComando(string strQuery)
         {
-            var cmdSelect = new SqlCommand(strQuery, conexao);
+            var cmdSelect = new SqlCommand(strQuery, conexao);           
             cmdSelect.ExecuteNonQuery();
         }
         

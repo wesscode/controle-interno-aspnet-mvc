@@ -29,12 +29,11 @@ namespace WeW.WEB.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Usuario usuarioAutenticado = appUsuario.ValidaUsuarioLoginSenha(new Usuario { Login = loginVM.Login, Senha = loginVM.Senha });
+                    Usuario usuarioAutenticado = appUsuario.ValidaUsuarioLoginSenha(new Usuario { Login = loginVM.Login, Senha = loginVM.Senha});
              
                     if (usuarioAutenticado != null)
                     {
-                        FormsAuthentication.SetAuthCookie(loginVM.Login, false);
-                        TempData["Nome"] = loginVM.Login;
+                        FormsAuthentication.SetAuthCookie(usuarioAutenticado.Nome, false); //informando qual dado do usuario foi armazenado em cookie                      
                         return RedirectToAction("Index", "Home");
                     }
                 }
@@ -42,7 +41,7 @@ namespace WeW.WEB.Controllers
             catch (Exception)
             {
 
-                throw;
+               throw;
             }
                        
             TempData["warning"] = "Login ou Senha inválidas";          

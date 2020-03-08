@@ -85,9 +85,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Produtos", "Index", "Produto")</li>
-                    <li>@Html.ActionLink("Categorias", "Index", "Categoria")</li>
-
-                    @*<li>@Html.ActionLink("Registro de Vendas", "Index", "Registro")</li>*@
+                    <li>@Html.ActionLink("Categorias", "Index", "Categoria")</li>                  
                 </ul>
                 <ul class="nav navbar-nav">
                     <li>
@@ -99,10 +97,10 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right ">
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true"><i class="fa fa-user-circle-o" aria-hidden="true"></i> @User.Identity.Name<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true"><i class="fa fa-user-circle" aria-hidden="true"></i> @User.Identity.Name<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Alterar senha", "Index", "Usuario")</li>
-                            <li>@Html.ActionLink("Sair", "Logout", "Login")</li>
+                            <li><a href="@Url.Action("Index", "Usuario")"><i class="fa fa-lock" aria-hidden="true"></i> Alterar senha</a></li>
+                            <li><a href="@Url.Action("Logout", "Login")"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a></li>                      
                         </ul>
                     </li>
                 </ul>
