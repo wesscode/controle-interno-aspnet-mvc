@@ -37,15 +37,15 @@ namespace WeW.WEB.Controllers
                         return RedirectToAction("Index", "Home");
                     }
                 }
+                TempData["warning"] = "Login ou Senha inválidas";
+
+                return View("Index", loginVM);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-               throw;
-            }
-                       
-            TempData["warning"] = "Login ou Senha inválidas";          
-            return View("Index", loginVM);
+               throw ex;
+            }                                         
         }
 
         public ActionResult Logout()
