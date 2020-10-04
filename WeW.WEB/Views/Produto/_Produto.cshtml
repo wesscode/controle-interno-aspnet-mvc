@@ -7,21 +7,21 @@
         color: #8b008b;
     }
 </style>
-
 <div id="divListaProdutos">
     <table class="table">
-        <tr class="cor">
-
-            <th>Código</th>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Preço</th>
-            <th>Categoria</th>
-            <th>Quantidade</th>
-            <th>Ações</th>
-            <th></th>
-
-        </tr>
+        @if (Model.TotalItemCount < 0)
+        {
+            <tr class="cor">
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Categoria</th>
+                <th>Quantidade</th>
+                <th>Ações</th>
+                <th></th>
+            </tr>
+        }
         @{
             if (Model.TotalItemCount != 0)
             {
